@@ -1,5 +1,5 @@
-import React  from "react";
-import Headers from "./header";
+import React from "react";
+import Base from "./base";
 //import { Link } from "react-router-dom";
 
 const Signin = () => {
@@ -25,9 +25,9 @@ const Signin = () => {
   };
 
   return (
-    <Headers title="Sign In page" description="A page for user to sign in!">
+    <Base title="Sign In page" description="A page for user to sign in!">
       {signInForm()}
-    </Headers>
+    </Base>
   );
 };
 
