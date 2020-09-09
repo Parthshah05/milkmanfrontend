@@ -1,6 +1,19 @@
 import React, { useState } from "react";
-import Headers from "../Core/header";
+import Header from "../Core/header";
 import { signin } from "../../containers/Login/signin";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+  Container,
+  Row,
+  Col,
+} from "reactstrap";
 
 const Signin = () => {
   const [values, setValues] = useState({
@@ -30,55 +43,77 @@ const Signin = () => {
           error: "",
           success: true,
         });
-        // authenticate(data, () => {
-        //   setValues({
-        //     ...values,
-        //     didRedirect: true
-        //   });
-        // });
       }
     });
   };
 
   const signInForm = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <form>
-            <div className="form-group">
-              <label className="text-light">Email</label>
-              <input
-                className="form-control"
-                type="email"
-                onChange={handleChange("email")}
-                value={email}
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="text-light">Password</label>
-              <input
-                className="form-control"
-                onChange={handleChange("password")}
-                value={password}
-                type="password"
-              />
-            </div>
-            <button onClick={onSubmit} className="btn btn-success btn-block">
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col sm="12">
+            <Card style={{ marginTop: "50px" }}>
+              <CardHeader
+                style={{
+                  textAlign: "center",
+                  color: "#BC1A4B",
+                  background: "#1ABC9C",
+                }}
+              >
+                <h5>Please login here</h5>
+              </CardHeader>
+              {successMessage()}
+              {errorMessage()}
+              <CardBody>
+                <Form>
+                  <FormGroup>
+                    <Label for="exampleEmail">Email</Label>
+                    <Input
+                      type="email"
+                      name="email"
+                      id="exampleEmail"
+                      placeholder="Enter your email"
+                      onChange={handleChange("email")}
+                      value={email}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="examplePassword">Password</Label>
+                    <Input
+                      type="password"
+                      name="password"
+                      id="examplePassword"
+                      placeholder="Enter your password"
+                      onChange={handleChange("password")}
+                      value={password}
+                    />
+                  </FormGroup>
+                  <Button
+                    onClick={onSubmit}
+                    style={{
+                      background: "#1ABC9C",
+                      color: "#BC1A4B",
+                      borderColor: "#1ABC9C",
+                    }}
+                  >
+                    <b>LogIn</b>
+                  </Button>
+                </Form>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     );
   };
+
   const successMessage = () => {
     return (
       <div className="row">
         <div className="col-md-6 offset-sm-3 text-left">
           <div
             className="alert alert-success"
-            style={{ display: success ? "" : "none" }}
+            style={{ display: success ? "" : "none", marginTop: "10px" }}
           >
             Login successfully.
           </div>
@@ -86,13 +121,14 @@ const Signin = () => {
       </div>
     );
   };
+
   const errorMessage = () => {
     return (
       <div className="row">
         <div className="col-md-6 offset-sm-3 text-left">
           <div
             className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
+            style={{ display: error ? "" : "none", marginTop: "10px" }}
           >
             {error}
           </div>
@@ -102,11 +138,10 @@ const Signin = () => {
   };
 
   return (
-    <Headers title="Sign In page" description="A page for user to sign in!">
-      {successMessage()}
-      {errorMessage()}
+    <div>
+      <Header />
       {signInForm()}
-    </Headers>
+    </div>
   );
 };
 
