@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Signin from "./components/signin";
-import Signup from "./components/signup";
+import Signin from "./components/Login/signin";
+import Signup from "./components/Register/signup";
 import User from "./containers/User/users";
 import EditUser from "./containers/User/editUser";
 
