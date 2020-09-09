@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Table } from "reactstrap";
 import axios from "axios";
-import TableRow from "./tableRow";
+import TableRow from "../../components/User/tableRow";
 // import { NavLink } from "react-router-dom";
 
 class User extends Component {
