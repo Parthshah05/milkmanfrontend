@@ -5,6 +5,7 @@ import Signin from "./components/Login/signin";
 import Signup from "./components/Register/signup";
 import User from "./containers/User/users";
 import EditUser from "./containers/User/editUser";
+import Home from "./components/Core/home";
 
 const Routes = () => {
   return (
@@ -14,7 +15,8 @@ const Routes = () => {
           <Route path="/signup" component={Signup} />
           <Route path="/allUsers" component={User} />
           <Route path="/editUser/:id" component={EditUser} />
-          <Route path="/" exact component={Signin} />
+          <Route path="/signin" exact component={Signin} />
+          <Route path="/" exact component={Home} />
         </Switch>
       </BrowserRouter>
     </div>

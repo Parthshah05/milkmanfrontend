@@ -1,6 +1,19 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, Card } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Card,
+  CardHeader,
+  CardBody,
+  Container,
+  Row,
+  Col,
+} from "reactstrap";
 import axios from "axios";
+import Header from "../../components/Core/header";
 
 class EditUser extends Component {
   constructor(props) {
@@ -50,6 +63,7 @@ class EditUser extends Component {
       .catch((error) => {
         console.log(error);
       });
+    this.props.history.push("/allUsers");
   }
 
   componentDidMount() {
@@ -66,45 +80,80 @@ class EditUser extends Component {
   }
 
   render() {
+    const updateUserForm = () => {
+      return (
+        <Container>
+          <Row>
+            <Col sm="12">
+              <Card style={{ marginTop: "50px" }}>
+                <CardHeader
+                  style={{
+                    textAlign: "center",
+                    color: "#BC1A4B",
+                    background: "#1ABC9C",
+                  }}
+                >
+                  <h5>Update User</h5>
+                </CardHeader>
+                <CardBody>
+                  <Form>
+                    <FormGroup>
+                      <Label for="exampleFirstName">First Name:</Label>
+                      <Input
+                        type="text"
+                        name="fname"
+                        id="exampleFirstName"
+                        placeholder="Edit your First Name"
+                        value={this.state.first_name}
+                        onChange={this.onChangeFirstName}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Label for="exampleLastName">Last Name:</Label>
+                      <Input
+                        type="text"
+                        name="lname"
+                        id="exampleLastName"
+                        placeholder="Edit your Last Name"
+                        value={this.state.last_name}
+                        onChange={this.onChangeLastName}
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Label for="exampleEmail">Email:</Label>
+                      <Input
+                        type="email"
+                        name="email"
+                        id="exampleEmail"
+                        placeholder="Edit your First Name"
+                        value={this.state.email}
+                        onChange={this.onChangeEmail}
+                      />
+                    </FormGroup>
+                    <Button
+                      onClick={this.onSubmit}
+                      style={{
+                        background: "#1ABC9C",
+                        color: "#BC1A4B",
+                        borderColor: "#1ABC9C",
+                      }}
+                    >
+                      <b>Update</b>
+                    </Button>
+                  </Form>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      );
+    };
+
     return (
-      <Card body>
-        <Form>
-          <FormGroup>
-            <Label for="exampleFirstName">First Name:</Label>
-            <Input
-              type="text"
-              name="fname"
-              id="exampleFirstName"
-              placeholder="Edit your First Name"
-              value={this.state.first_name}
-              onChange={this.onChangeFirstName}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleLastName">Last Name:</Label>
-            <Input
-              type="text"
-              name="lname"
-              id="exampleLastName"
-              placeholder="Edit your Last Name"
-              value={this.state.last_name}
-              onChange={this.onChangeLastName}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleEmail">Email:</Label>
-            <Input
-              type="email"
-              name="email"
-              id="exampleEmail"
-              placeholder="Edit your First Name"
-              value={this.state.email}
-              onChange={this.onChangeEmail}
-            />
-          </FormGroup>
-          <Button onClick={this.onSubmit}>Submit</Button>
-        </Form>
-      </Card>
+      <div>
+        <Header />
+        {updateUserForm()}
+      </div>
     );
   }
 }

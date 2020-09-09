@@ -1,8 +1,16 @@
 import React, { Component } from "react";
-import { Table } from "reactstrap";
+import {
+  Table,
+  Container,
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  CardBody,
+} from "reactstrap";
 import axios from "axios";
 import TableRow from "../../components/User/tableRow";
-// import { NavLink } from "react-router-dom";
+import Header from "../../components/Core/header";
 
 class User extends Component {
   state = {
@@ -28,35 +36,45 @@ class User extends Component {
       });
   }
 
-  //   userSelectedHandler = (id) => {
-  //     this.props.history.location.url("/allUsers/" + id);
-  //   };
-
   render() {
     let users = this.state.users.map((user, i) => {
-      return (
-        <TableRow
-          key={i}
-          obj={user}
-          //   clicked={() => this.userSelectedHandler(user.id)}
-        />
-      );
+      return <TableRow key={i} obj={user} />;
     });
 
     return (
       <div>
-        <Table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th colSpan="3">Actions</th>
-            </tr>
-          </thead>
-          <tbody>{users}</tbody>
-        </Table>
+        <Header />
+        <Container>
+          <Row>
+            <Col sm="12">
+              <Card style={{ marginTop: "50px" }}>
+                <CardHeader
+                  style={{
+                    textAlign: "center",
+                    color: "#BC1A4B",
+                    background: "#1ABC9C",
+                  }}
+                >
+                  <h5>List of Users</h5>
+                </CardHeader>
+                <CardBody>
+                  <Table bordered>
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th colSpan="3">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>{users}</tbody>
+                  </Table>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
